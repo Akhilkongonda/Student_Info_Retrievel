@@ -1,0 +1,104 @@
+.textborder{
+
+  /* border-style: solid; */
+  padding: 10px;
+  background-color:#dedee3;
+  color: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  color: black;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+  
+}
+.background {
+  margin: 0;
+  padding: 0;
+  background-image: url(https://img.freepik.com/premium-photo/top-view-worktable-with-accessories_254791-58.jpg?size=626&ext=jpg&ga=GA1.1.990696825.1702995329&semt=ais);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  
+}
+
+.leftnavbar{
+  background-color: #c0bbc0;
+  position: relative;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  min-height: 100vh;
+
+}
+
+.textintruct{
+  justify-content: center;
+  text-align: center;
+  color: rgb(10, 139, 204);
+  margin-top: 40px;
+
+}
+.arrow-button {
+  display: flex;
+  color: #C2FFE9;
+  background-color: #0572bae1;
+  padding: 8px 14px;
+  border-radius: 10px;
+  transition: all .3s ease;
+  font-weight: bold;
+  cursor: pointer;
+  align-items: center;
+  font-size: 14px;
+ 
+
+  position:fixed;
+}
+
+
+.arrow-button > .arrow {
+  width: 6px;
+  height: 6px;
+  border-right: 2px solid #C2FFE9;
+  border-bottom: 2px solid #1398df;
+  position: relative;
+  transform: rotate(-45deg);
+  margin: 0 6px;
+  transition: all .3s ease;
+}
+
+.arrow-button > .arrow::before {
+  display: block;
+  background-color: currentColor;
+  width: 3px;
+  transform-origin: bottom right;
+  height: 2px;
+  position: absolute;
+  opacity: 0;
+  bottom: calc(-2px / 2);
+  transform: rotate(45deg);
+  transition: all .3s ease;
+  content: "";
+  right: 0;
+}
+
+.arrow-button:hover > .arrow {
+  transform: rotate(-45deg) translate(4px, 4px);
+  border-color: text-hover-color;
+}
+
+.arrow-button:hover > .arrow::before {
+  opacity: 1;
+  width: 8px;
+}
+
+.arrow-button:hover {
+  background-color: #017A4F;
+  color: #fff;
+}
+.sidebuttons{
+  margin-top: 90px;
+}
+

@@ -1,0 +1,12 @@
+.login{
+    background-color: rgb(230, 234, 234);
+    min-height:100vh;
+    
+  }
+  .img{
+    display: block;
+    margin: auto;
+    max-width:100%;
+
+  }
+ 

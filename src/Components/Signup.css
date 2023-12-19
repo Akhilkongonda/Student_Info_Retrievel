@@ -1,0 +1,45 @@
+/* Signup.css */
+
+.card {
+    border: 1px solid #ddd;
+    padding: 30px;
+    border-radius: 8px;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 150px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  input {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+ 
+  
+ 
+  .signupbg{
+    background-color: rgb(230, 234, 234);
+    min-height:100vh;
+  }
+  .img{
+    display: block;
+    margin: auto;
+    max-width: 100%;
+  }
+  
