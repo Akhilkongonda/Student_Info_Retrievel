@@ -30,6 +30,10 @@ function FacultyDashboard() {
           <button className="arrow-button" onClick={() => { navigate('/FacultyDashboard/Analysedata') }}>Analyse data<span class="arrow"></span>
 </button>
           </div>
+          <div className=' sidebuttons  p-0'>
+          <button className="arrow-button" onClick={() => { navigate('/FacultyDashboard/Representation') }}>Representation<span class="arrow"></span>
+</button>
+          </div>
 
 
         </div>

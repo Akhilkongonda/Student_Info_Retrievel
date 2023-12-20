@@ -151,6 +151,40 @@ studentdata.post('/verifycrdns', async (req, res) => {
       res.status(500).send('Internal Server Error');
     }
   });
+
+
+  //get to present
+  studentdata.get('/gettopresent',async(req,res)=>{
+    try{
+         const query=`select * from student_data`;
+         connection.query(query,(err,results)=>{
+          if(err){
+            console.error('Error fetching data from database:', err);
+            res.status(500).json({ message: 'Database Error', err: err.message });
+
+          }
+          else{
+            if(results && results.length>0){
+              console.log("Result:", results);
+              res.status(200).send({ payload: results });
+
+
+            }
+            else{
+              console.log("No results found for the provided roll number.");
+          res.status(200).send({ payload: [] });
+            }
+
+          }
+         })
+
+    }
+    catch(err){
+      console.error('Unexpected error:', error);
+      res.status(500).json({ message: 'Internal Server Error', error: error.message });
+    }
+  })
+
    
 
  

@@ -10,6 +10,7 @@ import Signup from './Components/Signup';
 import Login from './Components/Login';
 import Analysedata from './Components/Analysedata';
 import Instructions from './Components/Instructions';
+import Representation from './Components/Representation';
 
 function App() {
 
@@ -38,6 +39,10 @@ function App() {
             {
               path:'/FacultyDashboard/Analysedata',
               element:<Analysedata/>
+            },
+            {
+              path:'/FacultyDashboard/Representation',
+              element:<Representation/>
             }
           ]
         },
