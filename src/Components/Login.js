@@ -22,7 +22,7 @@ function Login() {
   const onSubmit = (data) => {
     console.log(data);
   
-    axios.post('http://localhost:3500/StudentApi/verifycrdns', data)
+    axios.post('https://student-info-retrievel.vercel.app/StudentApi/verifycrdns', data)
       .then(result => {
         setres(result.status); // use result.status instead of result.response.status
   
