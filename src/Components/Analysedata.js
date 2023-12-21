@@ -19,7 +19,7 @@ function Analysedata() {
         
         const onSubmit = (data)=>{
             console.log('Submited data is : ' ,data);
-            axios.post('https://student-info-retrievel.vercel.app/StudentApi/get',data)// this will send /post this data to the server and then backend to check for the particular rollnumber
+            axios.post('http://localhost:3500/StudentApi/get',data)// this will send /post this data to the server and then backend to check for the particular rollnumber
             .then(result=>{  
               console.log("hii data received") // if the apis sends correcr responds then  the data from database is sent to the results 
               console.log("the data received",result.data);

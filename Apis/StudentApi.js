@@ -6,6 +6,7 @@ const csvParser = require('csv-parser');
 const { Readable } = require('stream');
 
 studentdata.use(exp.json());
+studentdata.use(cors());
 
 studentdata.post('/get', async (req, res) => {
   try {

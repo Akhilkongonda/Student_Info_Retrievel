@@ -19,7 +19,7 @@ function Signup() {
   const onSubmit = (data) => {
     console.log(data);
 
-    axios.post('https://student-info-retrievel.vercel.app/StudentApi/postcrdns',data)
+    axios.post('http://localhost:3500/StudentApi/postcrdns',data)
     .then(result=>{
       navigate('/')
 

@@ -11,7 +11,7 @@ function Representation() {
   }, []);
 
   const fetchData = () => {
-    axios.get('https://student-info-retrievel.vercel.app/StudentApi/gettopresent')
+    axios.get('http://localhost:3500/StudentApi/gettopresent')
       .then(result => {
         console.log('Data received:', result.data);
         const branchCounts = countStudentsByBranch(result.data.payload);
