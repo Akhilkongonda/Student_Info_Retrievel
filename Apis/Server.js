@@ -9,7 +9,7 @@ app.listen(3500,()=>{
 
 // stock overflow middleware
 const corsOptions = {
-    origin: 'https://student-info-retrievel-9llg-akhilkongondas-projects.vercel.app',
+    origin: 'https://student-info-retrievel.vercel.app',
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Add the necessary methods
     optionSuccessStatus: 200
