@@ -1,16 +1,9 @@
-body {
-    font-family: Arial, sans-serif;
-   
-  }
-  
-  h2 {
-    color: #333;
-  }
-  
-  p {
-    color: #666;
-  }
-  
-  ol {
-    color: #333;
-  }
+.background-image {
+  padding: 0;
+  margin-top: 0;
+  background-image: url('https://img.freepik.com/free-photo/3d-illustration-pen-putting-blue-ticks-paper_107791-15675.jpg?w=900&t=st=1703255977~exp=1703256577~hmac=c98eb6820c4b2c6bcb7be96badbf816fd551c371f3502e304d713b867282a5c7');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}

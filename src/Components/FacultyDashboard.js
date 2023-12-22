@@ -1,46 +1,62 @@
+import React, { useState } from 'react';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+
 import './FacultyDashboard.css';
-import { Outlet, useNavigate } from 'react-router-dom';
 
 function FacultyDashboard() {
   const navigate = useNavigate();
+  const [isNavOpen, setNavOpen] = useState(false);
 
   const moveto = () => {
     navigate('/FacultyDashboard/Uploaddata');
+    setNavOpen(false);
+  };
+
+  const handleNavToggle = () => {
+    setNavOpen(!isNavOpen);
   };
 
   return (
-    <div className='container-fluid p-0 background' style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div className="container-fluid p-0 background" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <header>
-        <h3 className='textborder text-center m-0'>Faculty Dashboard</h3>
+        <nav className="navbar navvbar navbar-expand-lg  fixed-top">
+          <div className="container">
+            <button
+              className={`navbar-toggler ${isNavOpen ? 'collapsed' : ''}`}
+              type="button"
+              onClick={handleNavToggle}
+              aria-controls="navbarNav"
+              aria-expanded={isNavOpen}
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className={`collapse navbar-collapse ${isNavOpen ? 'show' : ''}`} id="navbarNav">
+              <ul className="navbar-nav ml-auto">
+                <li className="nav-item navvitem">
+                  <NavLink to="/FacultyDashboard/Uploaddata" className="nav-link" activeClassName="active" onClick={moveto}>
+                    Upload Data
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/FacultyDashboard/Analysedata" className="nav-link" activeClassName="active">
+                    CSIT_2020
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/FacultyDashboard/Representation" className="nav-link" activeClassName="active">
+                    CSIT2K20 Analysis
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
       </header>
-      
 
-      <div className='row m-0' style={{ flex: 1, display: 'flex' }}>
-        <div className='col-sm-2 leftnavbar ' style={{ display: 'flex', flexDirection: 'column' }}>
-          
-
-
-          <div className=' sidebuttons'>
-<button class="arrow-button"  onClick={moveto}>Upload data<span class="arrow"></span>
-</button>
-          </div>
-
-
-          <div className=' sidebuttons  p-0'>
-          <button className="arrow-button" onClick={() => { navigate('/FacultyDashboard/Analysedata') }}>Student data<span class="arrow"></span>
-</button>
-          </div>
-          <div className=' sidebuttons  p-0'>
-          <button className="arrow-button" onClick={() => { navigate('/FacultyDashboard/Representation') }}>Analysis<span class="arrow"></span>
-</button>
-          </div>
-
-
-        </div>
-
-        <div className="col-sm-10 border" style={{ flex: 1 }}>
+      <div className="row m-0" style={{ flex: 1, display: 'flex', marginTop: '70px' }}>
+        <div className="col-sm-12 border" style={{ flex: 1 }}>
           <Outlet />
-      
         </div>
       </div>
     </div>

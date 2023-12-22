@@ -1,13 +1,24 @@
 /* Signup.css */
 
-.card {
-    border: 1px solid #ddd;
-    padding: 30px;
-    border-radius: 8px;
-    width: 300px;
-    margin: 0 auto;
-    margin-top: 150px;
-  }
+.cardd{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 360px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
+  margin: auto; /* Center horizontally */
+   margin-top: 20vh; /*Center vertically based on the viewport height */
+  transition: box-shadow 0.5s ease-in-out;
+}
+.cardd:hover {
+  box-shadow: 15px 8px 20px rgba(15, 1, 1, 0.2); /* Adjust the shadow on hover */
+  background-color:hsl(0, 0%, 100%)
+}
+
   
   .form {
     display: flex;
@@ -29,17 +40,42 @@
     border: 1px solid #ddd;
     border-radius: 4px;
   }
-  
- 
-  
- 
-  .signupbg{
-    background-color: rgb(230, 234, 234);
-    min-height:100vh;
+
+  .container- {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: rgb(73, 74, 74); 
+    color: #ede3e3;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    z-index: 1000;
+    overflow: hidden;
   }
-  .img{
-    display: block;
-    margin: auto;
-    max-width: 100%;
+  
+  .top-text {
+    margin: 0;
+    display: inline-block;
+    white-space: nowrap;
+    animation: moveLeft 30s linear infinite;
+  }
+  
+  @keyframes moveLeft {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+
+  .bgimg{
+    background-image: url('https://cdn.dribbble.com/users/1593958/screenshots/3923200/media/45a2600cc4cec4a6521440a586bda6a3.png?resize=800x600&vertical=center');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
   }
   

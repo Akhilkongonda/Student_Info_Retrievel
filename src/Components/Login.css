@@ -1,12 +1,57 @@
-.login{
-    background-color: rgb(230, 234, 234);
-    min-height:100vh;
-    
-  }
-  .img{
-    display: block;
-    margin: auto;
-    max-width:100%;
 
+  .cardd{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 360px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
+    margin: auto; /* Center horizontally */
+    margin-top: 20vh; /* Center vertically based on the viewport height */
+    transition: box-shadow 0.5s ease-in-out;
   }
+  .cardd:hover {
+    box-shadow: 15px 8px 20px rgba(15, 1, 1, 0.2); /* Adjust the shadow on hover */
+    background-color:hsl(0, 0%, 100%)
+  }
+
+  .container- {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: rgb(73, 74, 74); /* Fixed background color */
+    color: #ede3e3;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    z-index: 1000;
+    overflow: hidden;
+  }
+  
+  .top-text {
+    display: inline-block;
+    white-space: nowrap;
+    animation: moveLeft 30s linear infinite;
+  }
+  
+  @keyframes moveLeft {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  .bgimg{
+    background-image: url('https://img.freepik.com/free-vector/freelancer-concept-illustration_114360-7590.jpg?w=740&t=st=1703255514~exp=1703256114~hmac=29e7d81b7420c05d33e4cf35cb3de78a54d7d728f50578ef308b67e99967ee3a');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  }
+  
+  
  

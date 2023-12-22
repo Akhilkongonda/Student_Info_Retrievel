@@ -1,44 +1,39 @@
-import React from 'react'
-import './Instructions.css';
+import React from 'react';
+import './Instructions.css'; // Create a separate CSS file for styling
 
 function Instructions() {
+  const columnNames = [
+    'AdmnNo', 'Name', 'SEM1-1GPA', 'SEM1-1Backlogs', 'SEM1-2GPA', 'SEM1-2Backlogs',
+    'SEM2-1GPA', 'SEM2-1Backlogs', 'SEM2-2GPA', 'SEM2-2Backlogs', 'SEM3-1GPA',
+    'SEM3-1Backlogs', 'SEM3-2GPA', 'SEM3-2Backlogs', 'SEM4-1GPA', 'SEM4-1Backlogs',
+    'SEM4-2GPA', 'SEM4-2Backlogs', 'AluminiGPA', 'AluminiBacklogs', 'FinalCGPA',
+    'TotalCredits', 'TotalBacklogs',
+  ];
+
   return (
-    <div className='mt-4'>
-        <p>*Please follow these instructions when uploading student data:</p>
-<ol>
-    <li>Prepare a CSV file with the following columns:</li>
-    <ul>
-        <li>Sno (Serial Number)</li>
-        <li>HTNo (Hall Ticket Number)</li>
-        <li>Name</li>
-        <li>AdminNo (Admin Number)</li>
-        <li>YearOfJoin (Year of Joining)</li>
-        <li>AdminDate (Admission Date)</li>
-        <li>AdmissionType</li>
-        <li>DOB (Date of Birth)</li>
-        <li>Gender</li>
-        <li>FatherName</li>
-        <li>StudentMobileNo</li>
-        <li>CETName (Common Entrance Test Name)</li>
-        <li>CETHTNo (CET Hall Ticket Number)</li>
-        <li>CETRank (CET Rank)</li>
-        <li>SubBranch (Sub Branch of Study)</li>
-        <li>FeeReimbursementAmt (Fee Reimbursement Amount)</li>
-        <li>CompletionYear</li>
-        <li>Email</li>
-    </ul>
-    <li>Ensure the file format is correct before uploading.</li>
-    
-</ol>
+    <div>
+      <div>
+        <p></p>
 
-   <p>*Please follow these instructions when Anlyzing student data</p>
-   <ol>
- 
-    Enter valid Rollnumber Number of a Student
-   </ol>
+        
+        <div className="row">
+          <div className="col col-sm-8 background-image">
+            {/* Content in the left column */}
+          </div>
+          <div className="col col-sm-4">
+            <p>Prepare a CSV file with the following columns</p>
+            <ul>
+              {columnNames.map((colname) => (
+                <li key={colname}>{colname}</li>
+              ))}
+            </ul>
+          </div>
 
+          
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Instructions
+export default Instructions;

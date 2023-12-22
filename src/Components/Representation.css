@@ -1,3 +1,9 @@
 .represent{
     margin-top: 80px;
 }
+.btnn{
+    background-color: rgb(93, 91, 234);
+    border-color: #eed1a903;
+    border-radius: 5px;
+    color:rgb(232, 226, 226)
+}

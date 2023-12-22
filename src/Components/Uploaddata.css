@@ -1,4 +1,4 @@
-.cardd {
+.cardanalyse {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,7 +10,7 @@
     box-shadow: 0 8px 10px rgba(12, 1, 1, 0.1);
     padding: 20px;
     margin: 20px;
-    transition: box-shadow 0.2s ease-in-out;
+  
   
     margin: auto;
     margin-top: 200px;
@@ -21,4 +21,17 @@ input {
     width: 200px;
     margin-bottom: 10px; /* Add some bottom margin for spacing */
     border-color:  cadetblue;
+}
+.cardanalyse:hover {
+    box-shadow: 15px 8px 20px rgba(15, 1, 1, 0.2); /* Adjust the shadow on hover */
+    background-color:hsl(0, 0%, 100%)
+}
+.btnn{
+    background-color: rgb(118, 116, 193);
+    border-color: #eed1a903;
+    border-radius: 5px;
+    color:rgb(232, 226, 226);
+    width: 100px;
+    height: 40px;
+    
 }

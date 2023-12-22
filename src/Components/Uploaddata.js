@@ -67,7 +67,7 @@ function Uploaddata() {
 
   return (
     <div className='background'>
-      <div className='cardd card-body'>
+      <div className='cardanalyse card-body'>
         <label htmlFor="filename" className='p-3'>
           Upload file
         </label>
@@ -83,7 +83,7 @@ function Uploaddata() {
 
       <div>
         {/* Add a submit button */}
-        <button className='btn btn-primary m-auto d-block mt-4' onClick={handleSubmit}>
+        <button className='btnn btn-primary m-auto d-block mt-4' onClick={handleSubmit}>
           Submit
         </button>
         {

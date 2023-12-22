@@ -9,20 +9,21 @@ import './Analysedata.css';
 function Analysedata() {
 
     const [studentdata,setstudentdata]=useState();
- 
-  
       const {
           register,
           handleSubmit,
           formState: { errors },
+          setValue
         } = useForm();
         
         const onSubmit = (data)=>{
+
             console.log('Submited data is : ' ,data);
             axios.post('http://localhost:3500/StudentApi/get',data)// this will send /post this data to the server and then backend to check for the particular rollnumber
             .then(result=>{  
               console.log("hii data received") // if the apis sends correcr responds then  the data from database is sent to the results 
               console.log("the data received",result.data);
+              setValue("rollnumber","");
             
               {
                 setstudentdata(result.data)
@@ -37,13 +38,13 @@ function Analysedata() {
           }
 
     return (
-        <div>
+        <div className='bb'>
             <div className='cardanalyse card-body'>
                 <form className="form" onSubmit={handleSubmit(onSubmit)}>
                     <input className='mt-4' type="text" name="rollnumber" id="rollnumber" placeholder=' Enter Rollnumber'
                         {...register("rollnumber", { required: "Username is required" })} />
                     <div className='mt-4'>
-                        <button className='btn btn-primary m-auto d-block mt-4' type="submit">submit</button>
+                        <button className='btnn m-auto d-block mt-4' type="submit">submit</button>
                     </div>
                 </form>
 
@@ -53,7 +54,7 @@ function Analysedata() {
                 <div className='mt-5'>
                     <h4 className='text-center'>Student Information</h4>
                     {studentdata.payload && studentdata.payload.length > 0 ? (
-                        <table className='table'>
+                        <table className='table tabledata'>
                             <thead>
                                 <tr>
                                     <th>Attribute</th>

@@ -15,17 +15,17 @@ function Login() {
     reset,
   } = useForm();
 
-  const Navigate=useNavigate();
-  const [res,setres]=useState(null);
-  const [text,settext]=useState(null);
+  const Navigate = useNavigate();
+  const [res, setres] = useState(null);
+  const [text, settext] = useState(null);
 
   const onSubmit = (data) => {
     console.log(data);
-  
-    axios.post('http://localhost:3500/StudentApi/verifycrdns', data)
+
+    axios.post(' http://localhost:3500/StudentApi/verifycrdns', data)
       .then(result => {
         setres(result.status); // use result.status instead of result.response.status
-  
+
         if (result.status === 200) {
           // Move the navigation logic here
           Navigate('/FacultyDashboard');
@@ -39,55 +39,72 @@ function Login() {
         settext("Invalid credentials");
 
       });
-      reset();
+    reset();
   };
-  
+
 
 
   return (
     <div>
-
-   
-    <div className=' login'>
-      <div>
-      <img className='m-auto img' src="https://exams.mlrinstitutions.ac.in/Images/header.png" alt="" />
+      <div className='container-'>
+        <h3 className='top-text'>MLR Institute of Technology
+          (Autonomous)
+        </h3>
       </div>
-      <img src="https://smartinterviews.in/assets/images/Logging_in.gif" alt="" />
-     
 
-  
-    <div className='card card-body signupcard'>
-    
-      <h4>Login</h4>
-      <form className="form" onSubmit={handleSubmit(onSubmit)}>
-        <div className="form-group">
-          <label htmlFor="username">Username</label>
-         <input type="email" name="email" id="email" placeholder='usermail' 
-          {...register("username", { required: "Username is required", minLength: 3 })}/>
-          {errors.username && <p>{errors.username.message}</p>}
+      <div className="row">
+
+
+
+        <div className="col col-sm-6 bgimg">
+
+
         </div>
 
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            placeholder='Password'
-            {...register("password", { required: "Password is required" })}
-          />
-          {errors.password && <p>{errors.password.message}</p>}
+        <div className="col col-sm-6">
+          <div className=' login'>
+
+
+
+
+            <div className='cardd card-body'>
+
+              <h4>Login</h4>
+              <form className="form" onSubmit={handleSubmit(onSubmit)}>
+                <div className="form-group">
+
+                  <input type="email" name="email" id="email" placeholder='usermail'
+                    {...register("username", { required: "Username is required", minLength: 3 })} />
+                  {errors.username && <p>{errors.username.message}</p>}
+                </div>
+
+                <div className="form-group">
+
+                  <input
+                    type="password"
+                    placeholder='Password'
+                    {...register("password", { required: "Password is required" })}
+                  />
+                  {errors.password && <p>{errors.password.message}</p>}
+                </div>
+
+                <div className="form-group">
+                  <button className='btn btn-primary' type="submit">Login</button>
+                </div>
+              </form>
+              {text && <p className="text-danger">{text}</p>}
+
+              <p className="signup-text">Don't have an account? <Link to="/signup">Sign up</Link></p>
+            </div>
+          </div>
+
         </div>
 
-        <div className="form-group">
-          <button className='btn btn-primary' type="submit">Login</button>
-        </div>
-      </form>
-      {text && <p className="text-danger">{text}</p>}
 
-      <p className="signup-text">Don't have an account? <Link to="/signup">Sign up</Link></p>
+      </div>
+
     </div>
-    </div>
-    </div>
-   
+
   );
 }
 

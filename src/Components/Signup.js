@@ -33,25 +33,33 @@ function Signup() {
 
   return (
 
-    <div className='container-fluid signupbg'>
-        <div>
-        <img className='m-auto img' src="https://exams.mlrinstitutions.ac.in/Images/header.png" alt="no" />
-        </div>
+    <div>
+       <div className='container-'>
+        <h3 className='top-text'>MLR Institute of Technology
+(Autonomous)
+</h3>
+       </div>
   
+<div className="row">
+  <div className="col col-sm-6 bgimg">
 
 
-    <div className='card card-body signupcard'>
-      <h4>Signup</h4>
+  </div>
+
+  <div className="col col-sm-6">
+  
+    <div className='cardd card-body'>
+      <h4 className='mt-4 mb-4'>Signup</h4>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group">
-          <label htmlFor="username">Username</label>
+       
         <input type="email" name="email" id="email"  placeholder='usermail'
         {...register("username", { required: "Username is required", minLength: 3 })}/>
           {errors.username && <p>{errors.username.message}</p>}
         </div>
 
         <div className="form-group">
-          <label htmlFor="password">Password</label>
+        
           <input
             type="password"
             placeholder='Password'
@@ -63,9 +71,14 @@ function Signup() {
         <div className="form-group">
           <button className='btn btn-primary' type="submit">Signup</button>
         </div>
+        
       </form>
       <p className="signup-text">Already have a account? <Link to="/">Login</Link></p>
+      
     </div>
+  </div>
+</div>
+    
  
     </div>
   );

@@ -8,22 +8,51 @@
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin: 20px;
+    margin: auto; /* Center horizontally */
+    margin-top: 20vh; /* Center vertically based on the viewport height */
     transition: box-shadow 0.5s ease-in-out;
+  }
   
-    margin: auto;
-    margin-top: 200px;
-    
-}
+  /* Optional: Add styling to body to center the card vertically */
+
+  
 
 input {
     width: 200px;
     margin-bottom: 10px; /* Add some bottom margin for spacing */
-    border-color: cadetblue;
+    border-color: rgb(141, 138, 58);
 }
 
 
-.cardd:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Adjust the shadow on hover */
+.cardanalyse:hover {
+    box-shadow: 15px 8px 20px rgba(15, 1, 1, 0.2); /* Adjust the shadow on hover */
+    background-color:hsl(0, 0%, 100%)
 }
+.btnn{
+    background-color: rgb(35, 159, 212);
+    border-color: #eed1a903;
+    border-radius: 5px;
+    color:rgb(232, 226, 226)
+}
+.btnn:hover{
+  box-shadow: 0px 8px 9px rgba(88, 87, 87, 0.2); /* Adjust the shadow on hover */
+    
+
+}
+/* Add !important to override any conflicting styles */
+.tabledata {
+    width: 70% !important;
+    margin: auto;
+  }
+  
+  .table-cell {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+ body{
+  background-color: #ddd;
+ }
+
+  
+  
