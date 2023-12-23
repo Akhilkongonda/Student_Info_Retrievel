@@ -196,7 +196,31 @@ studentdata.post('/verifycrdns', async (req, res) => {
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-  //FOR CSIT_2021 STUDENTS DETAILS SERVER
+  //post updatedresultone 
+
+  studentdata.post('/postupdatedone',async(req,res)=>{
+    try{
+      let data=req.body;
+      console.log(data);
+      const query = `UPDATE csit_2020 SET \`${data.key}\`= ? WHERE AdmnNo = ?`;
+      connection.query(query,[data.resultgpa,data.rollnumber],(err,result)=>{
+        if (err) {
+          console.error('Error executing query:', err);
+          res.status(500).send({ success: false, message: 'Internal server error' });
+          return;
+        }
+  
+        console.log('Query result:', result);
+        res.status(200).send({ success: true, message: ' Updated successfully' });
+      })
+ 
+    }
+    catch(err){
+
+      console.error("Error:", err);
+      res.status(500).send({ success: false, message: 'Internal server error' });
+    }
+  })
 
 
    

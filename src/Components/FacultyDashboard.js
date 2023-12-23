@@ -53,7 +53,9 @@ function FacultyDashboard() {
 
   const handleLogout = () => {
     // Clear localStorage
+    alert("you are logged Out successfully")
     localStorage.clear();
+    
 
     // Redirect to the login page
  navigate('/');
@@ -83,12 +85,12 @@ function FacultyDashboard() {
                 </li>
                 <li className="nav-item">
                   <NavLink to="/FacultyDashboard/Analysedata" className="nav-link" activeClassName="active">
-                    CSIT_2020
+                    StudentInfo
                   </NavLink>
                 </li>
                 <li className="nav-item">
                   <NavLink to="/FacultyDashboard/Representation" className="nav-link" activeClassName="active">
-                    CSIT2K20 Analysis
+                    Result Analysis
                   </NavLink>
                 </li>
 

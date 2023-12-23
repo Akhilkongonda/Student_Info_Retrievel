@@ -21,7 +21,7 @@ function Instructions() {
             {/* Content in the left column */}
           </div>
           <div className="col col-sm-4">
-            <p style={{marginTop:"60px"}}>Prepare a CSV file with the following columns</p>
+            <p style={{marginTop:"60px"}}>Prepare a CSV file with the following columns while uploading Data</p>
             <ul>
               {columnNames.map((colname) => (
                 <li key={colname}>{colname}</li>
