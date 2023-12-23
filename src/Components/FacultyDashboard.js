@@ -49,6 +49,16 @@ function FacultyDashboard() {
     setNavOpen(!isNavOpen);
   };
 
+
+
+  const handleLogout = () => {
+    // Clear localStorage
+    localStorage.clear();
+
+    // Redirect to the login page
+ navigate('/');
+  };
+
   return (
     <div className="container-fluid p-0 background" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <header>
@@ -81,6 +91,12 @@ function FacultyDashboard() {
                     CSIT2K20 Analysis
                   </NavLink>
                 </li>
+
+                <li className="nav-item logout">
+      <NavLink to="/" className="nav-link" activeClassName="active" onClick={handleLogout}>
+        LogOut
+      </NavLink>
+    </li>
               </ul>
             </div>
           </div>

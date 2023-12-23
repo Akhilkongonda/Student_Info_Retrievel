@@ -5,19 +5,23 @@ font-style: bold;
 
 }
 .navvitem{
-  margin-left: 10px;
 
-  justify-content: flex-end;
+
+  justify-content:space-evenly;
+
 }
 /* Assuming you have a class name for your navbar, let's use .navbar for example */
 .navbar-nav .nav-link {
   color: white;
+
 }
 
 /* Optionally, set the color for the active link */
 .navbar-nav .nav-item.active .nav-link {
+
   color: #0400ff; /* Adjust the color for the active link as needed */
 }
+
 
 
 
