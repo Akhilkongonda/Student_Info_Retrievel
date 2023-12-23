@@ -28,6 +28,9 @@ function Login() {
 
         if (result.status === 200) {
           // Move the navigation logic here
+          console.log(result.data.token);
+          localStorage.setItem('token', result.data.token); 
+
           Navigate('/FacultyDashboard');
         } else {
           settext("Invalid credentials");
@@ -89,7 +92,7 @@ function Login() {
                 </div>
 
                 <div className="form-group">
-                  <button className='btn btn-primary' type="submit">Login</button>
+                  <button className='btnn' type="submit">Login</button>
                 </div>
               </form>
               {text && <p className="text-danger">{text}</p>}

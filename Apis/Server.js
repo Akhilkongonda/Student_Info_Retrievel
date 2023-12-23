@@ -31,7 +31,20 @@ app.use(bodyParser.urlencoded({extended:true}))
 const studentdata = require('./StudentApi')
 app.use('/StudentApi',studentdata);  //here this the frontend serach for the correct path so here it matches to /StudentApi which is in frontend; and moves to the studentdata that is astudentapi.js 
 
+app.post('/verifylogintoken',async(req,res)=>{
+    console.log('token :', req.body);
+    const token = req.body.token;
+    try{
+        let userdata=jwt.verify(token,'abcdef');
+        console.log('tokern valid')
+        res.send({message:"tokenvalid"})
 
+    }
+    catch(err){
+        console.log("token invalid");
+        res.send({message:"tokennotvalid"});
+    }
+})
 
 
 

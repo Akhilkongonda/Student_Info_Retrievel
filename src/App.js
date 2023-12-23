@@ -13,7 +13,6 @@ import Instructions from './Components/Instructions';
 import Representation from './Components/Representation';
 
 function App() {
-
   const router=createBrowserRouter([
     {
       path:"/",
