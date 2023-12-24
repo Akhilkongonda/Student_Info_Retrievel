@@ -28,12 +28,14 @@ function Login() {
 
         if (result.status === 200) {
           // Move the navigation logic here
-          console.log(result.data.token);
+          console.log("the token from backend is",result.data.token);
           localStorage.setItem('token', result.data.token); 
 
           Navigate('/FacultyDashboard');
         } else {
           settext("Invalid credentials");
+          
+         
 
         }
       })

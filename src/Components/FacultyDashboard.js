@@ -16,18 +16,17 @@ function FacultyDashboard() {
     const token = localStorage.getItem('token');
      console.log('token fetched in facultydashboard :',token)
     axios
-      .post('http://localhost:5000/verifylogintoken',{token})
+      .post('http://localhost:3500/verifylogintoken',{token})
       .then((res)=>{
         //if token is invalid
         console.log(res.data.message)
         if(res.data.message ==="tokennotvalid" ){
           localStorage.clear();
-          alert("please login first");
+          alert("please login first")
           navigate('/');
+         
         }
-        //if Token is valid
-      
-      })
+    })
       .catch((err)=>{console.log("Error in token Verification ",err)});
  },[])
 

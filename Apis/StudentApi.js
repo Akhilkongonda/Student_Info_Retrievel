@@ -150,7 +150,7 @@ studentdata.post('/verifycrdns', async (req, res) => {
 
       if (result.length > 0) {
         // Matching credentials found
-        let jwttoken=jwt.sign({mail:mail},'abcdef',{expiresIn:"2h"});
+        let jwttoken=jwt.sign({mail:mail},'abcdefg',{expiresIn:"2h"});
         console.log("Logged in : " ,jwttoken ,'\n user :' ,mail);
         return res.status(200).json({ message: 'Logged in' ,token:jwttoken});
       } else {
