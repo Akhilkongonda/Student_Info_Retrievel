@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -7,31 +7,34 @@ import './FacultyDashboard.css';
 function FacultyDashboard() {
 
 
+  const [logedin, setlogedin] = useState();
+  //for token to verify
 
-//for token to verify
-  
-  useEffect(()=>{
-    
+  useEffect(() => {
+
     //verify token and get details
     const token = localStorage.getItem('token');
-     console.log('token fetched in facultydashboard :',token)
+    console.log('token fetched in facultydashboard :', token)
     axios
-      .post('http://localhost:3500/verifylogintoken',{token})
-      .then((res)=>{
+      .post('http://localhost:3500/verifylogintoken', { token })
+      .then((res) => {
         //if token is invalid
-        console.log(res.data.message)
-        if(res.data.message ==="tokennotvalid" ){
-          localStorage.clear();
+        // console.log(res.data.message)
+        // console.log(res.data.userinfo)
+        setlogedin(res.data.userinfo);
+        if (res.data.message === "tokennotvalid") {
           alert("please login first")
+          localStorage.clear();
+
           navigate('/');
-         
+
         }
-    })
-      .catch((err)=>{console.log("Error in token Verification ",err)});
- },[])
+      })
+      .catch((err) => { console.log("Error in token Verification ", err) });
+  })
 
 
- /////upto here 
+  /////upto here 
 
 
 
@@ -52,13 +55,14 @@ function FacultyDashboard() {
 
   const handleLogout = () => {
     // Clear localStorage
-    alert("you are logged Out successfully")
+    alert(" click ok ! to logOut successfully")
     localStorage.clear();
-    
+
 
     // Redirect to the login page
- navigate('/');
+    navigate('/');
   };
+ 
 
   return (
     <div className="container-fluid p-0 background" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
@@ -93,12 +97,18 @@ function FacultyDashboard() {
                   </NavLink>
                 </li>
 
+
                 <li className="nav-item logout">
-      <NavLink to="/" className="nav-link" activeClassName="active" onClick={handleLogout}>
-        LogOut
-      </NavLink>
-    </li>
+                  <NavLink to="/" className="nav-link" activeClassName="active" onClick={handleLogout}>
+                    LogOut
+                  </NavLink>
+                </li>
               </ul>
+              <ul className='placetext'>
+                Loged in as {logedin}
+              </ul>
+
+
             </div>
           </div>
         </nav>

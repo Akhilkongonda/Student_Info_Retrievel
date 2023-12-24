@@ -9,7 +9,7 @@
     border-radius: 8px;
     box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
     margin: auto; /* Center horizontally */
-    margin-top: 20vh; /* Center vertically based on the viewport height */
+    margin-top: 20vh;
     transition: box-shadow 0.5s ease-in-out;
   }
   

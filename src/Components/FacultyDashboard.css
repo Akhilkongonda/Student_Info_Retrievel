@@ -21,6 +21,16 @@ font-style: bold;
 
   color: #0400ff; /* Adjust the color for the active link as needed */
 }
+.placetext {
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: flex-end; /* Align items to the end (right side) */
+  color: rgb(6, 231, 51);
+  margin-left: 60px;
+}
+
 
 
 

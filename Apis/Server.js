@@ -40,10 +40,14 @@ app.post('/verifylogintoken',async(req,res)=>{
     const decodedToken = jwt.decode(token, { complete: true });
     console.log('Decoded Token:', decodedToken);
 
+    const userloged=decodedToken?.payload["mail"];
+
+    console.log(userloged);
+
     try{
         let userdata=jwt.verify(token,'abcdefg');
         console.log('tokenn valid')
-        res.send({message:"tokenvalid"})
+        res.send({message:"tokenvalid",userinfo:userloged})
 
     }
     catch(err){

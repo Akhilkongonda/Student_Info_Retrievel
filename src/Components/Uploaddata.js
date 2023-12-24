@@ -48,7 +48,7 @@ function Uploaddata() {
             })
             .catch(err=>{
               console.log("error at front end"+err.message);
-              setresultin("Wrong file format. Please check the uploaded file format");
+              setresultin("Wrong file format. Please check the uploaded file format and verify the column names ");
 
              
             })
@@ -66,36 +66,37 @@ function Uploaddata() {
   };
 
   return (
-    <div className='background'>
-      <div className='cardanalyse card-body'>
-        <label htmlFor="filename" className='p-3'>
+    <div className="background-img">
+      <div className="card-analyse card-body">
+        <label htmlFor="filename" className="p-3">
           Upload file
         </label>
         <input
-          className='p-3'
+          className="p-3"
           ref={inputRef}
           onChange={handleFileChange}
           type="file"
           name="file"
           id="file"
         />
-      </div>
 
-      <div>
-        {/* Add a submit button */}
-        <button className='btnn btn-primary m-auto d-block mt-4' onClick={handleSubmit}>
+<button className="btnn btn-primary m-auto d-block" onClick={handleSubmit}>
           Submit
         </button>
-        {
-          <p className='text-danger text-center mt-4'>
-            {
-              resultin
-            }
+        {resultin && (
+          <p className="text-danger text-center mt-4">
+            {resultin}
           </p>
-        }
+        )}
       </div>
+  
+      
+        {/* Add a submit button */}
+        
+     
     </div>
   );
+  
 }
 
 export default Uploaddata;

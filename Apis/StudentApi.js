@@ -51,7 +51,7 @@ studentdata.post('/post', async (req, res) => {
 
     if (!Array.isArray(content) || content.length < 2 || !Array.isArray(content[1])) {
       console.error('Invalid file format.');
-      return res.status(400).send("Wrong file format. Please check the uploaded file format.");
+      return res.status(400).send("Wrong file format. Please check the uploaded file format. And verify column names");
     }
 
     const insertQuery = `

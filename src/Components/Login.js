@@ -16,15 +16,14 @@ function Login() {
   } = useForm();
 
   const Navigate = useNavigate();
-  const [res, setres] = useState(null);
   const [text, settext] = useState(null);
 
   const onSubmit = (data) => {
     console.log(data);
 
     axios.post(' http://localhost:3500/StudentApi/verifycrdns', data)
-      .then(result => {
-        setres(result.status); // use result.status instead of result.response.status
+      .then(result => { 
+        console.log(result);
 
         if (result.status === 200) {
           // Move the navigation logic here
@@ -34,14 +33,15 @@ function Login() {
           Navigate('/FacultyDashboard');
         } else {
           settext("Invalid credentials");
-          
+
          
 
         }
       })
       .catch(err => {
-        setres(err.status); // use err.status instead of err.response.status
+        
         settext("Invalid credentials");
+        
 
       });
     reset();
