@@ -6,7 +6,7 @@ input {
     border-color:  cadetblue;
 
 }
-.cardanalyse:hover {
+.card-analyse:hover {
     box-shadow: 15px 8px 20px rgba(15, 1, 1, 0.2); /* Adjust the shadow on hover */
     background-color:hsl(0, 0%, 100%)
 }

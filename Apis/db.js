@@ -2,10 +2,10 @@ const mysql=require('mysql');
 
 //connecting to data base
 const connection =mysql.createConnection({
-    host:'localhost',
-    user:'root',
-    password:'root1234',
-    database:'result_analysis'
+    host:'sql12.freemysqlhosting.net',
+    user:'sql12678347',
+    password:'G9k6eKk9Wb',
+    database:'sql12678347'
 });
 //checking if connection is succesful or not
 connection.connect((error)=>{
@@ -18,6 +18,6 @@ connection.connect((error)=>{
     
 })
 
-module.exports=connection;
+module.exports=connection; 
 
 

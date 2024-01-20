@@ -105,7 +105,7 @@ function FacultyDashboard() {
                 </li>
               </ul>
               <ul className='placetext'>
-                Loged in as {logedin}
+                {logedin}
               </ul>
 
 

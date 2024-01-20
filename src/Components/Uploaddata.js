@@ -52,6 +52,7 @@ function Uploaddata() {
 
              
             })
+            
 
 
       // Reset jsonData after submission

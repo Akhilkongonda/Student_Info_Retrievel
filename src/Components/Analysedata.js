@@ -52,12 +52,16 @@ const [serverres,setserverres]=useState();
         
 
         }
+
         console.log("the updated data is",updatedresult);
         axios.post('http://localhost:3500/StudentApi/postupdatedone', updatedresult)
         .then(result => {
             console.log("came back from server");
             console.log(result.data.message);
             setserverres(result.data.message);
+            onSubmit(updatedresult)
+            
+
         })
         .catch(err => {
             console.log("error at front end" + err.message);
@@ -78,6 +82,7 @@ const [serverres,setserverres]=useState();
                 console.log("hii data received") // if the apis sends correcr responds then  the data from database is sent to the results 
                 console.log("the data received", result.data);
                 setValue("rollnumber", "");
+               
 
                 {
                     setstudentdata(result.data)

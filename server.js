@@ -1,7 +1,9 @@
+const dotenv=require('dotenv').config();
 const exp=require('express');
 const app=exp();
 const bodyParser=require('body-parser');
 const cors=require('cors');
+
 //run server
 app.listen(3500,()=>{
     console.log('server is running in the  port 3500')
@@ -28,9 +30,8 @@ app.use(bodyParser.urlencoded({extended:true}))
 
 // //apis
 
-const studentdata = require('./StudentApi')
+const studentdata = require('./Apis/studentApi')
 app.use('/StudentApi',studentdata);  //here this the frontend serach for the correct path so here it matches to /StudentApi which is in frontend; and moves to the studentdata that is astudentapi.js 
-
 
 const jwt=require('jsonwebtoken');
  
@@ -60,22 +61,23 @@ app.post('/verifylogintoken',async(req,res)=>{
 
 
 
-
-
-
-
-
-
-
-
-
 //error handling middle ware
 const errHandlingMiddleware=(err,req,res,next)=>{
     console.log("error in the server",err);
     res.status(201).send({message:err});
 }
 app.use(errHandlingMiddleware);
-//invalid path middleware
+
+
+//Build Web Packserver
+const path = require('path');
+app.use(exp.static(path.join(__dirname, './build')));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, "./build/index.html"));
+});
+
+
+// invalid path middleware
 const invalidPathMiddleWare = (req, res)=>{
     console.log('Invalid Path:');
     res.status(404).json({message:'Invalid Path'});

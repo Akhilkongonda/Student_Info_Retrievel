@@ -16,9 +16,10 @@ function Signup() {
   const navigate=useNavigate();
 
 
-  const onSubmit = (data) => {
-    console.log(data);
-
+  const onSubmit = async (data) => {
+    console.log("the registered data is",data.username);
+   
+  
     axios.post('http://localhost:3500/StudentApi/postcrdns',data)
     .then(result=>{
       navigate('/')
@@ -28,6 +29,11 @@ function Signup() {
       console.log("error at front end"+err.message);
     })
 
+
+
+    // for sending mail to particular registered mail
+    const response=await axios.post("http://localhost:3500/StudentApi/sendemail",data)
+  console.log(response.data)
     
   };
 

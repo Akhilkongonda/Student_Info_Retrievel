@@ -4,6 +4,8 @@ const connection = require('./db');
 const cors = require('cors');
 const csvParser = require('csv-parser');
 const { Readable } = require('stream');
+const sendEmailFunction = require('./utils/sendEmail');//  importing sendemail
+
 
 studentdata.use(exp.json());
 studentdata.use(cors());
@@ -80,7 +82,7 @@ studentdata.post('/post', async (req, res) => {
           }
         });
       });
-    });
+    }); 
 
     // Wait for all promises to resolve before sending the response
     await Promise.all(insertionPromises);
@@ -114,6 +116,7 @@ studentdata.post('/postcrdns', async (req, res) => {
         return;
       }
 
+
       console.log('Query result:', result);
       res.status(200).send('Data inserted successfully');
     });
@@ -121,11 +124,13 @@ studentdata.post('/postcrdns', async (req, res) => {
     console.error('Error from postcred', err);
     res.status(500).send('Internal Server Error');
   }
+ 
 });
 
 
 
 const jwt=require('jsonwebtoken');
+
 
 
 
@@ -220,6 +225,43 @@ studentdata.post('/verifycrdns', async (req, res) => {
       console.error("Error:", err);
       res.status(500).send({ success: false, message: 'Internal server error' });
     }
+  })
+
+
+
+  //for sending emails
+  studentdata.post("/sendemail",async(req,res)=>{
+    const data=req.body;
+    const email=data.username
+    console.log("the email came into server ",email)
+    try{
+      console.log("came int otry")
+      const send_to=email;
+      const sent_from=process.env.EMAIL_USER;
+      const reply_to=email;
+      const subject="Thankyou message"
+      const message=`<p>Congratulations! You've successfully registered on our Student Result Management website. We are thrilled to have you as a part of our academic community.</p>
+
+      
+  
+      <p>You can now log in to your account and access your academic information, view results, and take advantage of various features designed to enhance your learning experience.</p>
+  
+  
+      <p>Thank you once again for choosing Student Result Management website . We look forward to supporting you in your academic journey!</p>
+  
+      <p>Best regards</p>`
+
+        await sendEmailFunction(subject,message,send_to,sent_from,reply_to)
+        res.status(200).json({success:true,message:"Emailsent"});
+     
+
+    }
+    catch (error) {
+      console.log("came into catch")
+      console.error(error);
+      res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+  
   })
 
 
