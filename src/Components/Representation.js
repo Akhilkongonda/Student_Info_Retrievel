@@ -95,7 +95,7 @@ function Representation() {
 
   const onSubmit = (data) => {
     axios
-      .post('http://localhost:3500/StudentApi/gettorepresent', data)
+      .post('https://mlrit.onrender.com/StudentApi/gettorepresent', data)
       .then((result) => {
         console.log('Data received', result.data);
         setValue('rollnumber', '');

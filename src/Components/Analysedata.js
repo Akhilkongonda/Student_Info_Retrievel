@@ -54,7 +54,7 @@ const [serverres,setserverres]=useState();
         }
 
         console.log("the updated data is",updatedresult);
-        axios.post('http://localhost:3500/StudentApi/postupdatedone', updatedresult)
+        axios.post('https://mlrit.onrender.com/StudentApi/postupdatedone', updatedresult)
         .then(result => {
             console.log("came back from server");
             console.log(result.data.message);
@@ -77,7 +77,7 @@ const [serverres,setserverres]=useState();
 
         console.log('Submited data is : ', data);
         setroll(data.rollnumber);
-        axios.post('http://localhost:3500/StudentApi/get', data)// this will send /post this data to the server and then backend to check for the particular rollnumber
+        axios.post('https://mlrit.onrender.com/StudentApi/get', data)// this will send /post this data to the server and then backend to check for the particular rollnumber
             .then(result => {
                 console.log("hii data received") // if the apis sends correcr responds then  the data from database is sent to the results 
                 console.log("the data received", result.data);

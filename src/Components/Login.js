@@ -21,7 +21,7 @@ function Login() {
   const onSubmit = (data) => {
     console.log(data);
 
-    axios.post(' http://localhost:3500/StudentApi/verifycrdns', data)
+    axios.post(' https://mlrit.onrender.com/StudentApi/verifycrdns', data)
       .then(result => { 
         console.log(result);
 

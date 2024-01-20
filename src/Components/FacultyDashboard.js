@@ -16,7 +16,7 @@ function FacultyDashboard() {
     const token = localStorage.getItem('token');
     console.log('token fetched in facultydashboard :', token)
     axios
-      .post('http://localhost:3500/verifylogintoken', { token })
+      .post('https://mlrit.onrender.com/verifylogintoken', { token })
       .then((res) => {
         //if token is invalid
         // console.log(res.data.message)
