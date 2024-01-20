@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 
 // //apis
 
-const studentdata = require('./Apis/StudentApi')
+const studentdata = require('./Apis/studentApi')
 app.use('/StudentApi',studentdata);  //here this the frontend serach for the correct path so here it matches to /StudentApi which is in frontend; and moves to the studentdata that is astudentapi.js 
 
 const jwt=require('jsonwebtoken');

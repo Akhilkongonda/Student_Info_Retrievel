@@ -5,6 +5,7 @@ const cors = require('cors');
 const csvParser = require('csv-parser');
 const { Readable } = require('stream');
 const sendEmailFunction = require('./utils/sendEmail');//  importing sendemail
+const dotenv=require('dotenv').config();
 
 
 studentdata.use(exp.json());
@@ -108,7 +109,7 @@ studentdata.post('/postcrdns', async (req, res) => {
     const password = data.password;
 
     const query = 'INSERT INTO admins_data (mail, password) VALUES (?, ?)';
-    
+    console.log("Signup ! :",{mail,password})
     connection.query(query, [mail, password], (err, result) => {
       if (err) {
         console.error('Error executing query:', err);
@@ -230,14 +231,15 @@ studentdata.post('/verifycrdns', async (req, res) => {
 
 
   //for sending emails
-  studentdata.post("/sendemail",async(req,res)=>{
+  const asyncHandler = require('express-async-handler')
+  studentdata.post("/sendemail",asyncHandler(async(req,res)=>{
     const data=req.body;
     const email=data.username
-    console.log("the email came into server ",email)
+    console.log("the email came into server ",data)
     try{
-      console.log("came int otry")
       const send_to=email;
       const sent_from=process.env.EMAIL_USER;
+      // console.log("Sent_from",process.env.EMAIL_USER)
       const reply_to=email;
       const subject="Thankyou message"
       const message=`<p>Congratulations! You've successfully registered on our Student Result Management website. We are thrilled to have you as a part of our academic community.</p>
@@ -262,11 +264,11 @@ studentdata.post('/verifycrdns', async (req, res) => {
       res.status(500).json({ success: false, message: "Internal Server Error" });
   }
   
-  })
+  }))
 
 
    
-
+ 
  
 
 

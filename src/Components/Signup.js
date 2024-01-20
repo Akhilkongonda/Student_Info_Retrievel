@@ -21,19 +21,19 @@ function Signup() {
    
   
     axios.post('https://mlrit.onrender.com/StudentApi/postcrdns',data)
-    .then(result=>{
+    .then(async (result)=>{
+      // for sending mail to particular registered mail
+      const response=await axios.post("https://mlrit.onrender.com/StudentApi/sendemail",data)
+      console.log('response after sending mail',response.data)
       navigate('/')
-
     })
     .catch(err=>{
       console.log("error at front end"+err.message);
     })
+    
 
 
-
-    // for sending mail to particular registered mail
-    const response=await axios.post("https://mlrit.onrender.com/StudentApi/sendemail",data)
-  console.log(response.data)
+    
     
   };
 
