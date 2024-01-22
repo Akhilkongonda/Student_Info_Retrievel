@@ -1,32 +1,132 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-// import FacultyDashboard from './FacultyDashboard';
+
+import { useState,useEffect } from 'react';
+
 
 import './Signup.css';
+
 
 function Signup() {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
   const navigate=useNavigate();
 
+  const [res,setres]=useState();
+
+  const [genotp,setgenotp]=useState()
+
+  const [usermail,setusermail]=useState()
+  const [password,setpassword]=useState();
+  const [otpmail,sentotpmail]=useState();
+
+  const [otpverify,setotpverify]=useState();
+
+
+//verify otp to naviget to create another user
+
+  const [enterotp, setenterOtp] = useState('');
+
+  const verifyotp = () => {
+    // Your verification logic here
+    console.log(genotp,enterotp)
+   
+    if(+enterotp===+genotp){
+              console.log('Entered OTP verified:', enterotp);
+              setotpverify("otp verified successfully")
+        const data={
+          username:usermail,
+          password:password,
+          role:'Admin'
+
+
+
+        }
+
+      axios.post(' https://mlrit.onrender.com/StudentApi/verifycrdns',data )
+      .then( async result => { 
+        console.log(result);
+
+        if (result.status === 200) {
+          // Move the navigation logic here
+          console.log("the token from backend is",result.data.token);
+          localStorage.setItem('token', result.data.token);
+          navigate('/Addadmin'); 
+          reset();
+      
+
+
+          
+        } else {
+          // settext("Invalid credentials");
+
+         
+
+        }
+      })
+      .catch(err => {
+        
+        // settext("Invalid credentials");
+        
+
+      });
+
+
+
+   
+      
+    }
+    else{
+      setotpverify("otp enetered invalid")
+
+    }
+   
+  
+    
+    // Add logic to verify the entered OTP and handle accordingly
+  };
+
+ 
+
 
   const onSubmit = async (data) => {
-    console.log("the registered data is",data.username);
+    console.log("the registered data is",data.username,data.password);
+
+    setusermail(data.username)
+    setpassword(data.password)
+    
+    const generatedotp = Math.floor(1000 + Math.random() * 9000);
+    console.log('Generated OTP:',generatedotp);
+    setgenotp(generatedotp)
+
    
   
     axios.post('https://mlrit.onrender.com/StudentApi/postcrdns',data)
     .then(async (result)=>{
       // for sending mail to particular registered mail
-      const response=await axios.post("https://mlrit.onrender.com/StudentApi/sendemail",data)
-      console.log('response after sending mail',response.data)
-      navigate('/')
+      console.log("this is from signup server side",result.data)
+      if(result.data==="accountexisted")
+      {
+        const response=await axios.post("https://mlrit.onrender.com/StudentApi/sendemail",{...data,otp: generatedotp,})
+        console.log('response after sending mail',response.data)
+        setres("registered successfully");
+        sentotpmail("Otp sent to mail")
+        reset();
+      }
+      else if(result.data==="accountnotexisted"){
+        sentotpmail("invalid credentials")
+        reset();
+      }
+      
+      
     })
+  
     .catch(err=>{
       console.log("error at front end"+err.message);
     })
@@ -37,9 +137,17 @@ function Signup() {
     
   };
 
+ 
+
+
+  
+  useEffect(() => {
+    console.log(res);
+  }, [res]);
+
   return (
 
-    <div>
+    <div className='bgcolor'>
        <div className='container-'>
         <h3 className='top-text'>MLR Institute of Technology
 (Autonomous)
@@ -47,15 +155,12 @@ function Signup() {
        </div>
   
 <div className="row">
-  <div className="col col-sm-6 bgimg">
-
-
-  </div>
+  
 
   <div className="col col-sm-6">
   
     <div className='cardd card-body'>
-      <h4 className='mt-4 mb-4'>Signup</h4>
+      <h4 className='mt-4 mb-4'>AdminLogin</h4>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group">
        
@@ -75,13 +180,51 @@ function Signup() {
         </div>
 
         <div className="form-group">
-          <button className='btnn' type="submit">Signup</button>
+          <button className='btnn' type="submit">SendOtp</button>
+
         </div>
+        {
+          <p>{otpmail}</p>
+        }
+
+
+
+              {/* otp  */}
+        <div className="form-group">
+        <input
+          type="password"
+          placeholder="Enter OTP"
+          value={enterotp}
+          onChange={(e) => setenterOtp(e.target.value)}
+        />
+        {/* Display error message if needed */}
+        {/* {errors.password && <p>{errors.password.message}</p>} */}
+      </div>
+
+      <div className="form-group">
+        <button className="btnn" type="button" onClick={verifyotp}>
+          Verify
+        </button>
+
+        {
+        <p>{otpverify}</p>
+      }
+       
+      </div>
+     
         
       </form>
-      <p className="signup-text">Already have a account? <Link to="/">Login</Link></p>
+      {/* <p className="signup-text">Already have a account? <Link to="/">Login</Link></p>
+      {
+          <p className='text-danger'>{res}</p>
+        } */}
       
     </div>
+    
+  </div>
+  <div className="col col-sm-6 bgimg">
+
+
   </div>
 </div>
     

@@ -97,7 +97,7 @@ studentdata.post('/post', async (req, res) => {
 
 
 ///////////////////////////////
-//posting credientails
+//logging and checking otp as admin to add new faculty credientails
 
 studentdata.post('/postcrdns', async (req, res) => {
   try {
@@ -108,6 +108,71 @@ studentdata.post('/postcrdns', async (req, res) => {
 
     const password = data.password;
 
+    const accountcheck= 'SELECT * FROM admins_data WHERE mail = ? AND password = ?';
+
+
+    connection.query(accountcheck,[mail,password],(err,result)=>{
+
+      if (err) {
+        console.error('Error executing query:',err);
+        res.status(500).send('Internal Server Error');
+        return;
+      }
+
+
+      if (result.length > 0) {
+        console.log("already you have an account with this mail")
+        res.send("accountexisted");
+
+      }
+      else{
+        console.log("acount not existed")
+        res.send("accountnotexisted")
+      }
+     
+
+    })
+
+} catch (err) {
+    console.error('Error from postcred', err);
+    res.status(500).send('Internal Server Error');
+  }
+ 
+});
+
+
+
+
+
+
+studentdata.post('/addnewfaculty', async (req, res) => {
+  try {
+    const data = req.body;
+    console.log(data);
+
+    const mail = data.username;
+
+    const password = data.password;
+
+    const accountcheck= 'SELECT * FROM admins_data WHERE mail = ? AND password = ?';
+    
+    connection.query(accountcheck,[mail,password],(err,result)=>{
+
+      if (err) {
+        console.error('Error executing query:',err);
+        res.status(500).send('Internal Server Error');
+        return;
+      }
+
+
+      if (result.length > 0) {
+        console.log("already you have an account with this mail")
+        res.send("accountexisted");
+        return;
+
+      }
+      
+        
     const query = 'INSERT INTO admins_data (mail, password) VALUES (?, ?)';
     console.log("Signup ! :",{mail,password})
     connection.query(query, [mail, password], (err, result) => {
@@ -119,14 +184,24 @@ studentdata.post('/postcrdns', async (req, res) => {
 
 
       console.log('Query result:', result);
+
       res.status(200).send('Data inserted successfully');
     });
+
+
+      
+     
+
+    })
+
   } catch (err) {
     console.error('Error from postcred', err);
     res.status(500).send('Internal Server Error');
   }
  
 });
+
+
 
 
 
@@ -145,6 +220,10 @@ studentdata.post('/verifycrdns', async (req, res) => {
     const password = data.password;
     const query = 'SELECT * FROM admins_data WHERE mail = ? AND password = ?';
 
+    let role='Faculty'
+    if(data.role!=null){
+      role=data.role
+    }
     connection.query(query, [mail, password], (err, result) => {
   
 
@@ -156,7 +235,7 @@ studentdata.post('/verifycrdns', async (req, res) => {
 
       if (result.length > 0) {
         // Matching credentials found
-        let jwttoken=jwt.sign({mail:mail},'abcdefg',{expiresIn:"2h"});
+        let jwttoken=jwt.sign({mail:mail,role:role},'abcdefg',{expiresIn:"2h"});
         console.log("Logged in : " ,jwttoken ,'\n user :' ,mail);
         return res.status(200).json({ message: 'Logged in' ,token:jwttoken});
       } else {
@@ -235,6 +314,8 @@ studentdata.post('/verifycrdns', async (req, res) => {
   studentdata.post("/sendemail",asyncHandler(async(req,res)=>{
     const data=req.body;
     const email=data.username
+    const password=data.password
+    const otp=data.otp
     console.log("the email came into server ",data)
     try{
       const send_to=email;
@@ -242,16 +323,48 @@ studentdata.post('/verifycrdns', async (req, res) => {
       // console.log("Sent_from",process.env.EMAIL_USER)
       const reply_to=email;
       const subject="Thankyou message"
-      const message=`<p>Congratulations! You've successfully registered on our Student Result Management website. We are thrilled to have you as a part of our academic community.</p>
-
+      const message = `<p>Your OTP is: ${otp}</p>
+      <p>your password is:${data.password}</p>
+       <p>Best regards</p>`;
       
+
+        await sendEmailFunction(subject,message,send_to,sent_from,reply_to)
+        res.status(200).json({success:true,message:"Emailsent"});
+     
+
+    }
+    catch (error) {
+      console.log("came into catch")
+      console.error(error);
+      res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
   
-      <p>You can now log in to your account and access your academic information, view results, and take advantage of various features designed to enhance your learning experience.</p>
+  }))
+
+
+
+
+
+  ////////////////////////sending mail for login
+
   
+  //for sending emails for login candidates
   
-      <p>Thank you once again for choosing Student Result Management website . We look forward to supporting you in your academic journey!</p>
-  
-      <p>Best regards</p>`
+  studentdata.post("/sendemailforlogin",asyncHandler(async(req,res)=>{
+    const data=req.body;
+    const email=data.username
+    const otp=data.otp
+    console.log("sent otp is",otp)
+    
+    console.log("the email came into server ",data)
+    try{
+      const send_to=email;
+      const sent_from=process.env.EMAIL_USER;
+      // console.log("Sent_from",process.env.EMAIL_USER)
+      const reply_to=email;
+      const subject="Thankyou message"
+      const message=`<p>Successfully loggedIn into MLRIT Student Information System</p>
+      <p>Your OTP is: ${otp}</p>`
 
         await sendEmailFunction(subject,message,send_to,sent_from,reply_to)
         res.status(200).json({success:true,message:"Emailsent"});

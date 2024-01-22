@@ -42,13 +42,14 @@ app.post('/verifylogintoken',async(req,res)=>{
     console.log('Decoded Token:', decodedToken);
 
     const userloged=decodedToken?.payload["mail"];
+    const role=decodedToken?.payload['role'];
 
     console.log(userloged);
 
     try{
         let userdata=jwt.verify(token,'abcdefg');
         console.log('tokenn valid')
-        res.send({message:"tokenvalid",userinfo:userloged})
+        res.send({message:"tokenvalid",role:role,userinfo:userloged})
 
     }
     catch(err){

@@ -11,6 +11,7 @@ import Login from './Components/Login';
 import Analysedata from './Components/Analysedata';
 import Instructions from './Components/Instructions';
 import Representation from './Components/Representation';
+import Addadmin from './Components/Addadmin';
 
 function App() {
   const router=createBrowserRouter([
@@ -48,6 +49,11 @@ function App() {
         {
           path:"/Signup",
           element:<Signup/>
+
+        },
+        {
+          path:"/Addadmin",
+          element:<Addadmin/>
         },
         
       ]

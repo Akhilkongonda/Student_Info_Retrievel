@@ -32,7 +32,7 @@
     "xlsx": "^0.18.5"
   },
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "nodemo server.js",
     "build": "npm install && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

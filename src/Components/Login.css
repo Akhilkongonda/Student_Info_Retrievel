@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: center;
     width: 400px;
-    height: 360px;
+    height: 400px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
@@ -22,7 +22,7 @@
     position: fixed;
     top: 0;
     right: 0;
-    background-color: rgb(73, 74, 74); /* Fixed background color */
+    background-color: rgb(73, 73, 74); /* Fixed background color */
     color: #ede3e3;
     padding: 10px;
     width: 100%;
@@ -46,11 +46,14 @@
     }
   }
   .bgimg{
-    background-image: url('https://img.freepik.com/free-vector/freelancer-concept-illustration_114360-7590.jpg?w=740&t=st=1703255514~exp=1703256114~hmac=29e7d81b7420c05d33e4cf35cb3de78a54d7d728f50578ef308b67e99967ee3a');
-  background-size: cover;
+
+    background-image: url('https://t3.ftcdn.net/jpg/03/39/70/90/240_F_339709048_ZITR4wrVsOXCKdjHncdtabSNWpIhiaR7.jpg');
+  background-size:contain;
   background-position: center center;
   background-repeat: no-repeat;
   min-height: 100vh;
+ 
+
   }
   
   

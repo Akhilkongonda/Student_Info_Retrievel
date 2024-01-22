@@ -26,6 +26,7 @@ function Representation() {
         },
       });
     }
+    
 
     return () => {
       // Clean up the chart when the component is unmounted

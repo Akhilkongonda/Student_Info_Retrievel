@@ -20,17 +20,22 @@ function Login() {
 
   const onSubmit = (data) => {
     console.log(data);
+    const generatedotp = Math.floor(1000 + Math.random() * 9000);
+    console.log('Generated OTP:',generatedotp);
 
     axios.post(' https://mlrit.onrender.com/StudentApi/verifycrdns', data)
-      .then(result => { 
+      .then( async result => { 
         console.log(result);
 
         if (result.status === 200) {
           // Move the navigation logic here
           console.log("the token from backend is",result.data.token);
           localStorage.setItem('token', result.data.token); 
+          const response=await axios.post("https://mlrit.onrender.com/StudentApi/sendemailforlogin",{...data,otp: generatedotp,})
+          console.log('response after sending mail',response.data)
 
           Navigate('/FacultyDashboard');
+          
         } else {
           settext("Invalid credentials");
 
@@ -50,8 +55,8 @@ function Login() {
 
 
   return (
-    <div>
-      <div className='container-'>
+    <div className='container-fluid' >
+      <div className='container-' >
         <h3 className='top-text'>MLR Institute of Technology
           (Autonomous)
         </h3>
@@ -61,12 +66,8 @@ function Login() {
 
 
 
-        <div className="col col-sm-6 bgimg">
 
-
-        </div>
-
-        <div className="col col-sm-6">
+        <div className="col col-md-6 col-sm-12" >
           <div className=' login'>
 
 
@@ -99,9 +100,13 @@ function Login() {
               </form>
               {text && <p className="text-danger">{text}</p>}
 
-              <p className="signup-text">Don't have an account? <Link to="/signup">Sign up</Link></p>
+              <p className="signup-text">Want to add new Faculty? <Link to="/signup">Sign up</Link></p>
             </div>
           </div>
+
+        </div>
+        <div className="col col-md-6 col-sm-12 bgimg">
+
 
         </div>
 
