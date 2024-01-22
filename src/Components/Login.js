@@ -64,9 +64,6 @@ function Login() {
 
       <div className="row">
 
-
-
-
         <div className="col col-md-6 col-sm-12" >
           <div className=' login'>
 
