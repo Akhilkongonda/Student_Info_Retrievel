@@ -23,7 +23,7 @@ function Login() {
     const generatedotp = Math.floor(1000 + Math.random() * 9000);
     console.log('Generated OTP:',generatedotp);
 
-    axios.post(' https://mlrit.onrender.com/StudentApi/verifycrdns', data)
+    axios.post('https://mlrit.onrender.com/StudentApi/verifycrdns', data)
       .then( async result => { 
         console.log(result);
 

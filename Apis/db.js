@@ -2,8 +2,8 @@ const mysql=require('mysql');
 
 //connecting to data base
 const connection =mysql.createConnection({
-    host:'lsql12.freemysqlhosting.net',//sql12.freemysqlhosting.net
-    user:'sql12678347', //sql12678347
+    host:'sql12.freemysqlhosting.net',//sql12.freemysqlhosting.net
+    user:'sql12678347', //
     password:'G9k6eKk9Wb',///'G9k6eKk9Wb'
     database:'sql12678347' //'sql12678347'
 });
