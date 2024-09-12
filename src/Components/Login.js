@@ -19,6 +19,7 @@ function Login() {
   const [text, settext] = useState(null);
 
   const onSubmit = (data) => {
+    console.log(`${API_URL}/StudentApi/verifycrdns`)
     console.log(data);
     const generatedotp = Math.floor(1000 + Math.random() * 9000);
     console.log('Generated OTP:',generatedotp);
