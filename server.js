@@ -4,9 +4,11 @@ const app=exp();
 const bodyParser=require('body-parser');
 const cors=require('cors');
 
+PORT = process.env.PORT || 3000
+
 //run server
-app.listen(3500,()=>{
-    console.log('server is running in the  port 3500')
+app.listen(PORT,()=>{
+    console.log(`server is running in the  port ${PORT}`)
 })
 
 
