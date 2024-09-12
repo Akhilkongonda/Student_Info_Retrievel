@@ -4,6 +4,7 @@ import axios from 'axios';
 import Chart from 'chart.js/auto';
 
 function Representation() {
+  const API_URL = process.env.REACT_APP_API_URL
   const [studentData, setStudentData] = useState(null);
   const chartRef = useRef(null);
   const { register, handleSubmit, setValue } = useForm();
@@ -26,7 +27,6 @@ function Representation() {
         },
       });
     }
-    
 
     return () => {
       // Clean up the chart when the component is unmounted
@@ -35,25 +35,23 @@ function Representation() {
         chartRef.current = null;
       }
     };
-  }, [studentData]); // Empty dependency array for component mount
+  }, [studentData]); // Dependency array ensures chart is reinitialized when studentData changes
 
   // Listen for changes in studentData and update the chart
   useEffect(() => {
     if (chartRef.current && studentData && studentData.length > 0) {
       const semesters = [
-        'SEM1-1GPA',
-        'SEM1-2GPA',
-        'SEM2-1GPA',
-        'SEM2-2GPA',
-        'SEM3-1GPA',
-        'SEM3-2GPA',
-        'SEM4-1GPA',
-        'SEM4-2GPA',
-        
-       
-        
+        'sem1-1gpa',
+        'sem1-2gpa',
+        'sem2-1gpa',
+        'sem2-2gpa',
+        'sem3-1gpa',
+        'sem3-2gpa',
+        'sem4-1gpa',
+        'sem4-2gpa',
       ];
 
+      // Extract GPA and Backlogs data
       const gpaData = semesters.map((semester) => {
         const gpa =
           studentData[0][semester] !== undefined ? parseFloat(studentData[0][semester]) : 0;
@@ -62,13 +60,11 @@ function Representation() {
 
       const backlogsData = semesters.map((semester) => {
         const backlogs =
-          studentData[0][`${semester.replace('GPA', 'Backlogs')}`] !== undefined
-            ? parseInt(studentData[0][`${semester.replace('GPA', 'Backlogs')}`])
+          studentData[0][`${semester.replace('gpa', 'backlogs')}`] !== undefined
+            ? parseInt(studentData[0][`${semester.replace('gpa', 'backlogs')}`])
             : 0;
         return isNaN(backlogs) ? 0 : backlogs;
       });
-
-
 
       // Update the chart data
       chartRef.current.data.labels = semesters;
@@ -96,7 +92,7 @@ function Representation() {
 
   const onSubmit = (data) => {
     axios
-      .post('https://mlrit.onrender.com/StudentApi/gettorepresent', data)
+      .post(`${API_URL}/StudentApi/gettorepresent`, data)
       .then((result) => {
         console.log('Data received', result.data);
         setValue('rollnumber', '');
@@ -133,15 +129,15 @@ function Representation() {
       {studentData && studentData.length > 0 ? (
         <div className="mt-4">
           <h2>Student Information</h2>
-          <p>Roll Number: {studentData[0].AdmnNo}</p>
-          <p>Name: {studentData[0].Name}</p>
+          <p>Roll Number: {studentData[0].admnno}</p>
+          <p>Name: {studentData[0].name}</p>
           <canvas id="myChart" style={{ width: '500px', height: '300px', maxHeight: '300px' }}></canvas>
 
           {/* Display Total Backlogs and Final CGPA below the chart */}
-          {studentData[0].TotalBacklogs !== undefined && studentData[0].FinalCGPA !== undefined && (
+          {studentData[0].totalbacklogs !== undefined && studentData[0].finalcgpa !== undefined && (
             <div>
-              <h5>Total Backlogs: {studentData[0].TotalBacklogs}</h5>
-              <h5>Final CGPA: {studentData[0].FinalCGPA}</h5>
+              <h5>Total Backlogs: {studentData[0].totalbacklogs}</h5>
+              <h5>Final CGPA: {studentData[0].finalcgpa}</h5>
             </div>
           )}
         </div>
@@ -155,6 +151,5 @@ function Representation() {
     </div>
   );
 }
-
 
 export default Representation;

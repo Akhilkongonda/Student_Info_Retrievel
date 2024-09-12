@@ -1,23 +1,21 @@
-const mysql=require('mysql');
+const { Client } = require('pg');
 
-//connecting to data base
-const connection =mysql.createConnection({
-    host:'sql12.freemysqlhosting.net',//sql12.freemysqlhosting.net
-    user:'sql12678347', //
-    password:'G9k6eKk9Wb',///'G9k6eKk9Wb'
-    database:'sql12678347' //'sql12678347'
+// Replace with your actual CockroachDB connection string
+const connection = new Client({
+    connectionString:process.env.DB_STRING
 });
-//checking if connection is succesful or not
-connection.connect((error)=>{
-    if(error){
-        console.log('error in db',error);
+
+// Connecting to CockroachDB
+(async () => {
+    try {
+        await connection.connect();
+        console.log('DB connection successful');
+    } catch (error) {
+        console.error('Error in DB:', error);
     }
-    else{
-        console.log('db connection succesful');
-    }
-    
-})
 
-module.exports=connection; 
+})();
 
 
+
+module.exports = connection;

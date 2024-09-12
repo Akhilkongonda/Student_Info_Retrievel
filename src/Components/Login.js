@@ -6,7 +6,7 @@ import axios from 'axios';
 import './Login.css'
 
 function Login() {
-
+  const API_URL = process.env.REACT_APP_API_URL
 
   const {
     register,
@@ -23,7 +23,7 @@ function Login() {
     const generatedotp = Math.floor(1000 + Math.random() * 9000);
     console.log('Generated OTP:',generatedotp);
 
-    axios.post('https://mlrit.onrender.com/StudentApi/verifycrdns', data)
+    axios.post(`${API_URL}/StudentApi/verifycrdns`, data)
       .then( async result => { 
         console.log(result);
 
@@ -31,7 +31,7 @@ function Login() {
           // Move the navigation logic here
           console.log("the token from backend is",result.data.token);
           localStorage.setItem('token', result.data.token); 
-          const response=await axios.post("https://mlrit.onrender.com/StudentApi/sendemailforlogin",{...data,otp: generatedotp,})
+          const response=await axios.post(`${API_URL}/StudentApi/sendemailforlogin`,{...data,otp: generatedotp,})
           console.log('response after sending mail',response.data)
 
           Navigate('/FacultyDashboard');

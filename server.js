@@ -9,9 +9,10 @@ app.listen(3500,()=>{
     console.log('server is running in the  port 3500')
 })
 
+
 // stock overflow middleware
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: '*',
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Add the necessary methods
     optionSuccessStatus: 200

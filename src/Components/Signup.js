@@ -10,6 +10,9 @@ import './Signup.css';
 
 
 function Signup() {
+
+  const API_URL = process.env.REACT_APP_API_URL
+
   const {
     register,
     handleSubmit,
@@ -49,7 +52,7 @@ function Signup() {
 
         }
 
-      axios.post(' https://mlrit.onrender.com/StudentApi/verifycrdns',data )
+      axios.post(`${API_URL}/StudentApi/verifycrdns`,data )
       .then( async result => { 
         console.log(result);
 
@@ -107,13 +110,13 @@ function Signup() {
 
    
   
-    axios.post('https://mlrit.onrender.com/StudentApi/postcrdns',data)
+    axios.post(`${API_URL}/StudentApi/postcrdns`,data)
     .then(async (result)=>{
       // for sending mail to particular registered mail
       console.log("this is from signup server side",result.data)
       if(result.data==="accountexisted")
       {
-        const response=await axios.post("https://mlrit.onrender.com/StudentApi/sendemail",{...data,otp: generatedotp,})
+        const response=await axios.post(`${API_URL}/StudentApi/sendemail`,{...data,otp: generatedotp,})
         console.log('response after sending mail',response.data)
         setres("registered successfully");
         sentotpmail("Otp sent to mail")

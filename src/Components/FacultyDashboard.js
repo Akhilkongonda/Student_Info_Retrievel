@@ -5,7 +5,7 @@ import axios from 'axios';
 import './FacultyDashboard.css';
 
 function FacultyDashboard() {
-
+  const API_URL = process.env.REACT_APP_API_URL
 
   const [logedin, setlogedin] = useState();
   //for token to verify
@@ -16,7 +16,7 @@ function FacultyDashboard() {
     const token = localStorage.getItem('token');
     console.log('token fetched in facultydashboard :', token)
     axios
-      .post('https://mlrit.onrender.com/verifylogintoken', { token })
+      .post(`${API_URL}/verifylogintoken`, { token })
       .then((res) => {
         //if token is invalid
         // console.log(res.data.message)

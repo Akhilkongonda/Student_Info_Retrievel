@@ -4,6 +4,8 @@ import axios from 'axios';
 import './Uploaddata.css';      
 
 function Uploaddata() {
+
+  const API_URL = process.env.REACT_APP_API_URL
   const inputRef = useRef(null);
   const [jsonData, setJsonData] = useState(null);
   const[resultin ,setresultin]=useState(null)
@@ -37,7 +39,7 @@ function Uploaddata() {
   const handleSubmit = () => {
     if (jsonData) {
 
-      axios.post('https://mlrit.onrender.com/StudentApi/post',jsonData)// this will send /post this data to the server and then backend to check for the particular rollnumber
+      axios.post(`${API_URL}/StudentApi/post`,jsonData)// this will send /post this data to the server and then backend to check for the particular rollnumber
             .then(result=>{  
               console.log("hii data received") // if the apis sends correcr responds then  the data from database is sent to the results 
               console.log("the check is ",result)

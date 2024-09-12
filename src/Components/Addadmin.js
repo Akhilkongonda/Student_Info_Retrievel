@@ -7,6 +7,8 @@ import { useForm } from 'react-hook-form';
 
 export default function Addadmin() {
 
+  const API_URL = process.env.REACT_APP_API_URL
+
     const {
         register,
         handleSubmit,
@@ -21,7 +23,7 @@ export default function Addadmin() {
         console.log("the registered data is",data.username);
        
       
-        axios.post('https://mlrit.onrender.com/StudentApi/addnewfaculty',data)
+        axios.post(`${API_URL}/StudentApi/addnewfaculty`,data)
         .then(async (result)=>{
           // for sending mail to particular registered mail
           console.log( "the result came from server of adding new faculty",result)
@@ -32,7 +34,7 @@ export default function Addadmin() {
           }
           else if (result.status===200 && result.data==='Data inserted successfully')
           {
-            const response=await axios.post("https://mlrit.onrender.com/StudentApi/sendemail",data)
+            const response=await axios.post(`${API_URL}/StudentApi/sendemail`,data)
           console.log('response after sending mail',response.data)
           reset();
           setaccountcreated("regestered successfully!");
@@ -71,7 +73,7 @@ export default function Addadmin() {
         const token = localStorage.getItem('token');
         console.log('token fetched in facultydashboard :', token)
         axios
-          .post('https://mlrit.onrender.com/verifylogintoken', { token })
+          .post(`${API_URL}/verifylogintoken`, { token })
           .then((res) => {
 
             console.log(res.data)

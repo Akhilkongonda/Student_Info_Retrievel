@@ -8,6 +8,7 @@ import './Analysedata.css';
 
 
 function Analysedata() {
+    const API_URL = process.env.REACT_APP_API_URL
 
     const [studentdata, setstudentdata] = useState();
     const [showmodal, setshowmodal] = useState();
@@ -54,7 +55,7 @@ const [serverres,setserverres]=useState();
         }
 
         console.log("the updated data is",updatedresult);
-        axios.post('https://mlrit.onrender.com/StudentApi/postupdatedone', updatedresult)
+        axios.post(`${API_URL}/StudentApi/postupdatedone`, updatedresult)
         .then(result => {
             console.log("came back from server");
             console.log(result.data.message);
@@ -75,9 +76,10 @@ const [serverres,setserverres]=useState();
 
     const onSubmit = (data) => {
 
+        console.log("API_UR: ", API_URL)
         console.log('Submited data is : ', data);
         setroll(data.rollnumber);
-        axios.post('https://mlrit.onrender.com/StudentApi/get', data)// this will send /post this data to the server and then backend to check for the particular rollnumber
+        axios.post(`${API_URL}/StudentApi/get`, data)// this will send /post this data to the server and then backend to check for the particular rollnumber
             .then(result => {
                 console.log("hii data received") // if the apis sends correcr responds then  the data from database is sent to the results 
                 console.log("the data received", result.data);
